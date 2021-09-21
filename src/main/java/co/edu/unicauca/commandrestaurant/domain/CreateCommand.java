@@ -20,7 +20,7 @@ public class CreateCommand extends FoodCommand {
      *
      * @param food comida crear en la base de datos
      */
-    public CreateCommand(Food food) {
+    public CreateCommand(Food food) throws Exception {
         super();
         this.food = food;
         this.hasUndo = true;

@@ -25,7 +25,7 @@ public class FindByIdCommand extends FoodCommand {
     /**
      * Constructor
      */
-    public FindByIdCommand() {
+    public FindByIdCommand() throws Exception {
         super();
         //No tiene deshacer
         this.hasUndo = false;

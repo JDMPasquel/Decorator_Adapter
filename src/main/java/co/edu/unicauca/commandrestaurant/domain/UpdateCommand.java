@@ -1,8 +1,5 @@
 package co.edu.unicauca.commandrestaurant.domain;
 
-import co.edu.unicauca.commandrestaurant.domain.service.FoodService;
-import co.edu.unicauca.commandrestaurant.access.RepositoryFactory;
-import co.edu.unicauca.commandrestaurant.access.IFoodRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

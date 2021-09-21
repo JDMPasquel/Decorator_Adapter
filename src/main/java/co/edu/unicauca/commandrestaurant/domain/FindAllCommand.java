@@ -19,7 +19,7 @@ public class FindAllCommand extends FoodCommand {
     /**
      * Instancia del receptor
      */
-    public FindAllCommand() {
+    public FindAllCommand() throws Exception {
         super();
         foods = new ArrayList<>();
         this.hasUndo = false;

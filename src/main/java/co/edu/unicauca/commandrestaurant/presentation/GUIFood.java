@@ -35,7 +35,7 @@ public class GUIFood extends javax.swing.JFrame {
     /**
      * Constructor
      */
-    public GUIFood() {
+    public GUIFood() throws Exception {
         invoker = new Invoker();
         initComponents();
         setSize(870, 300);
@@ -70,7 +70,7 @@ public class GUIFood extends javax.swing.JFrame {
     /**
      * Carga las comidas en el jTable
      */
-    private void loadDataTable() {
+    private void loadDataTable() throws Exception {
         invoker.setCommand(new FindAllCommand());
         invoker.execute();
         FindAllCommand findAllCommand = (FindAllCommand) invoker.getCommand();
@@ -262,7 +262,11 @@ public class GUIFood extends javax.swing.JFrame {
         Messages.successMessage("Comida agregada con éxito", "Atención");
         clearControls();
         initStateButtons();
-        loadDataTable();
+        try {
+            loadDataTable();
+        } catch (Exception ex) {
+            Logger.getLogger(GUIFood.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -304,8 +308,12 @@ public class GUIFood extends javax.swing.JFrame {
             Logger.getLogger(GUIFood.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // Traer la comida previa        
-        invoker.setCommand(new FindByIdCommand());
+        try {
+            // Traer la comida previa
+            invoker.setCommand(new FindByIdCommand());
+        } catch (Exception ex) {
+            Logger.getLogger(GUIFood.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FindByIdCommand findByIdCommand = (FindByIdCommand) invoker.getCommand();
         findByIdCommand.setFoodId(id);
         invoker.execute();
@@ -320,7 +328,11 @@ public class GUIFood extends javax.swing.JFrame {
         Messages.successMessage("Comida modificada con éxito", "Atención");
         clearControls();
         initStateButtons();
-        loadDataTable();
+        try {
+            loadDataTable();
+        } catch (Exception ex) {
+            Logger.getLogger(GUIFood.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
     /**
      * Llama a la logica de negocio para modificar comida mediante el comando
@@ -344,8 +356,12 @@ public class GUIFood extends javax.swing.JFrame {
             return;
         }
 
-        //Fija el comando del invoker para buscar comida por id
-        invoker.setCommand(new FindByIdCommand());
+        try {
+            //Fija el comando del invoker para buscar comida por id
+            invoker.setCommand(new FindByIdCommand());
+        } catch (Exception ex) {
+            Logger.getLogger(GUIFood.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //Pasa parámetros al comando
         FindByIdCommand findByIdCommand = (FindByIdCommand) invoker.getCommand();
         findByIdCommand.setFoodId(Integer.parseInt(strId));
@@ -385,7 +401,11 @@ public class GUIFood extends javax.swing.JFrame {
     private void btnUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUndoActionPerformed
         //Ejecuta el comando deshacer
         invoker.undo();
-        loadDataTable();
+        try {
+            loadDataTable();
+        } catch (Exception ex) {
+            Logger.getLogger(GUIFood.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initStateButtons();
     }//GEN-LAST:event_btnUndoActionPerformed
 
@@ -401,20 +421,32 @@ public class GUIFood extends javax.swing.JFrame {
 
         // Traer la comida previa        
         int id = Integer.parseInt(strId);
-        invoker.setCommand(new FindByIdCommand());
+        try {
+            invoker.setCommand(new FindByIdCommand());
+        } catch (Exception ex) {
+            Logger.getLogger(GUIFood.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FindByIdCommand findByIdCommand = (FindByIdCommand) invoker.getCommand();
         findByIdCommand.setFoodId(id);
         invoker.execute();
         Food compAux = findByIdCommand.getFood();
         Food foodSaved = new Food(compAux.getId(), compAux.getName(), compAux.getType());
 
-        //Elimina la comida
-        deleteFood(foodSaved);
+        try {
+            //Elimina la comida
+            deleteFood(foodSaved);
+        } catch (Exception ex) {
+            Logger.getLogger(GUIFood.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         Messages.successMessage("Comida eliminada con éxito", "Atención");
         clearControls();
         initStateButtons();
-        loadDataTable();
+        try {
+            loadDataTable();
+        } catch (Exception ex) {
+            Logger.getLogger(GUIFood.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
     /**
      * Llama a la logica de negocio para comida comida mediante el comando
@@ -422,7 +454,7 @@ public class GUIFood extends javax.swing.JFrame {
      * @param food comida a eliminar
      *
      */
-    private void deleteFood(Food food) {
+    private void deleteFood(Food food) throws Exception {
         //Fija el comando del invoker
         invoker.setCommand(new DeleteCommand(food));
         //Ejecuta el comando
@@ -438,7 +470,7 @@ public class GUIFood extends javax.swing.JFrame {
         cboType.setSelectedIndex(0);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         GUIFood gui = new GUIFood();
         gui.setVisible(true);
     }
