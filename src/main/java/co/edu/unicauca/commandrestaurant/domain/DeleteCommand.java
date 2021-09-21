@@ -22,7 +22,7 @@ public class DeleteCommand extends FoodCommand {
      */
     private FoodService service;
 
-    public DeleteCommand(Food food) {
+    public DeleteCommand(Food food) throws Exception {
         this.food = food;
         IFoodRepository repo = RepositoryFactory.getInstance().getRepository();
         service = new FoodService(repo);

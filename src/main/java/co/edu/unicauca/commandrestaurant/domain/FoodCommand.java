@@ -18,7 +18,7 @@ public abstract class FoodCommand {
      *
      */
     
-    public FoodCommand(){
+    public FoodCommand() throws Exception{
          repo = RepositoryFactory.getInstance().getRepository();
          service = new FoodService(repo);
     }
